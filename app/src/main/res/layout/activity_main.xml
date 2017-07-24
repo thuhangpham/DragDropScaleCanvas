@@ -1,20 +1,3 @@
-<thlsoft.thuhang.demo.dragndrop.CanvasView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <thlsoft.thuhang.demo.dragndrop.MyImageView
-        android:id="@+id/imgView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/table" />
-    <thlsoft.thuhang.demo.dragndrop.MyImageView
-        android:id="@+id/imgView2"
-        android:layout_marginLeft="100dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/table2" />
-</thlsoft.thuhang.demo.dragndrop.CanvasView>
-<!--
 <FrameLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -23,15 +6,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="#FFFFFF" />
-    <thlsoft.thuhang.demo.dragndrop.MyImageView
-        android:id="@+id/imgView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/table" />
-    <thlsoft.thuhang.demo.dragndrop.MyImageView
-        android:id="@+id/imgView2"
-        android:layout_marginLeft="100dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/table2" />
-    </FrameLayout>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <thlsoft.thuhang.demo.dragndrop.MyImageView
+            android:id="@+id/imgView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/table" />
+        <thlsoft.thuhang.demo.dragndrop.MyImageView
+            android:id="@+id/imgView2"
+            android:layout_marginLeft="100dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/table2" />
+    </RelativeLayout>
+
+    </FrameLayout>

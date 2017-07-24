@@ -10,7 +10,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
     private static final String DEBUG_TAG = "Gestures";
@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
         customCanvas = (CanvasView) findViewById(R.id.signature_canvas);
         scaleGestureDetector = new ScaleGestureDetector(this, new MyScale());
 
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(100,100);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150,150);
         layoutParams.leftMargin = 10;
         layoutParams.topMargin = 10;
         imageView.setLayoutParams(layoutParams);
-        FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(100,100);
-        layoutParams2.leftMargin = 10;
-        layoutParams2.topMargin = 60;
+        RelativeLayout.LayoutParams layoutParams2 = new RelativeLayout.LayoutParams(150,150);
+        layoutParams2.leftMargin = 200;
+        layoutParams2.topMargin = 10;
         imageView2.setLayoutParams(layoutParams2);
 
         for (int i=0; i<imgLst.length;i++)

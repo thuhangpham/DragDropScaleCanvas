@@ -10,8 +10,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import static thlsoft.thuhang.demo.dragndrop.MainActivity.height;
 import static thlsoft.thuhang.demo.dragndrop.MainActivity.width;
@@ -22,7 +22,7 @@ import static thlsoft.thuhang.demo.dragndrop.MainActivity.width;
  */
 //https://examples.javacodegeeks.com/android/core/graphics/canvas-graphics/android-canvas-example/
 
-public class CanvasView  extends FrameLayout implements IMyCanvas, View.OnTouchListener {
+public class CanvasView  extends View implements IMyCanvas, View.OnTouchListener {
     private boolean is_scale = false;
     private float scale = 1.0f;
     private ScaleGestureDetector scaleGestureDetector;
@@ -50,7 +50,7 @@ public class CanvasView  extends FrameLayout implements IMyCanvas, View.OnTouchL
         mPaint.setColor(Color.BLACK);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeWidth(4f);
+        mPaint.setStrokeWidth(1f);
 
         xPath = new Path();
         yPath = new Path();
@@ -124,9 +124,6 @@ public class CanvasView  extends FrameLayout implements IMyCanvas, View.OnTouchL
         invalidate();
     }
     public boolean onTouchEv(int x, int y, MotionEvent event) {
-//        float x = event.getRawX();
-//        float y = event.getRawY();
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 //startTouch(x, y);
@@ -153,7 +150,7 @@ public class CanvasView  extends FrameLayout implements IMyCanvas, View.OnTouchL
         onTouchEv(x, y, event);
     }
 
-    FrameLayout.LayoutParams params;
+    RelativeLayout.LayoutParams params;
     float dx = 0, dy = 0, x = 0, y = 0;
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -162,35 +159,50 @@ public class CanvasView  extends FrameLayout implements IMyCanvas, View.OnTouchL
 
         switch (event.getAction() & MotionEvent.ACTION_MASK){
             case MotionEvent.ACTION_DOWN:
-                params = (FrameLayout.LayoutParams) img.getLayoutParams();
+                params = (RelativeLayout.LayoutParams) img.getLayoutParams();
                 dx = event.getRawX() - params.leftMargin;
                 dy = event.getRawY() - params.topMargin;
                 mode = DRAG;
                 break;
             case MotionEvent.ACTION_MOVE:
                 if(mode==DRAG){
-                    if(scale>= 1.0f && scale<= 2.5f) {
-                        img.setScaleY(scale);
-                        img.setScaleX(scale);
-                    }
+//                    if(scale>= 1.0f && scale<= 2.5f) {
+//                        img.setScaleY(scale);
+//                        img.setScaleX(scale);
+//                    }
+
                     x = event.getRawX();
                     y = event.getRawY();
+
                     params.leftMargin = (int) (x - dx);
                     params.topMargin = (int) (y - dy);
+
+                    if(params.leftMargin <= img.getWidth()/3)
+                        params.leftMargin = 0;
+                    if(params.topMargin <= img.getHeight()/3)
+                        params.topMargin = 0;
 
                     params.rightMargin = 0;
                     params.bottomMargin = 0;
 
-                    params.rightMargin = params.leftMargin + 5*params.width;
-                    params.bottomMargin = params.topMargin + 10*params.height;
+                    params.rightMargin = (int) (width + img.getWidth()/2);
+                    params.bottomMargin = (int) (height + img.getHeight()/2);
+
+                    if(params.rightMargin <= img.getWidth())
+                        params.rightMargin = 0;
+                    if(params.bottomMargin <= img.getHeight())
+                        params.bottomMargin =  0;
+
+
                     img.setLayoutParams(params);
-
-                    if(!is_scale){
-                        int xx = (int) img.getX() + img.getWidth()/2;
-                        int yy = (int) img.getY() + img.getHeight()/2;
-                        this.onTouch(xx,yy,event);
-                    }
-
+                    int xx = (int) img.getX() + img.getWidth() / 2;
+                    int yy = (int) img.getY() + img.getHeight();
+//                    if(!is_scale){
+//
+//                        this.onTouch(xx,yy,event);
+//                        is_scale = false;
+//                    }
+                    this.onTouch(xx,yy,event);
                 }
                 break;
         }
