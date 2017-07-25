@@ -1,11 +1,9 @@
 package thlsoft.thuhang.demo.dragndrop;
 
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -24,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private CanvasView customCanvas;
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-    public static float width;
-    public static float height;
     private MotionEvent e;
 
     private int[] imgLst = {R.id.imgView, R.id.imgView2};
@@ -37,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        Display display = getWindowManager().getDefaultDisplay();
+//        Point size = new Point();
+//        display.getSize(size);
+//        width = size.x;
+//        height = size.y;
+
         imageView = (MyImageView) findViewById(R.id.imgView);
         imageView2 = (MyImageView) findViewById(R.id.imgView2);
         customCanvas = (CanvasView) findViewById(R.id.signature_canvas);
@@ -66,11 +69,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        width = size.x;
-        height = size.y;
+
     }
 
 

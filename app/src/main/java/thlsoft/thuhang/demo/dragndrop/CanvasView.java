@@ -13,9 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import static thlsoft.thuhang.demo.dragndrop.MainActivity.height;
-import static thlsoft.thuhang.demo.dragndrop.MainActivity.width;
-
 
 /**
  * Created by ADMIN on 7/24/2017.
@@ -35,7 +32,7 @@ public class CanvasView  extends View implements IMyCanvas, View.OnTouchListener
     private Path xPath, yPath;
     Context context;
     private Paint mPaint;
-    private float mX, mY;
+    private float mX, mY, width, height;
     private static final float TOLERANCE = 5;
 
     public CanvasView(Context c, AttributeSet attrs) {
@@ -63,10 +60,11 @@ public class CanvasView  extends View implements IMyCanvas, View.OnTouchListener
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
         // your Canvas will draw onto the defined Bitmap
 //        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 //        mCanvas = new Canvas(mBitmap);
+        width = w;
+        height = h;
     }
 
     // override onDraw
@@ -77,10 +75,10 @@ public class CanvasView  extends View implements IMyCanvas, View.OnTouchListener
         //canvas.drawPath(mPath, mPaint);
         canvas.drawPath(xPath, mPaint);
         canvas.drawPath(yPath, mPaint);
-
         xPath.reset();
         yPath.reset();
         invalidate();
+
     }
 
     // when ACTION_DOWN start touch according to the x,y values
@@ -194,8 +192,8 @@ public class CanvasView  extends View implements IMyCanvas, View.OnTouchListener
 //                        params.topMargin = (int) (height - img.getHeight());
                     if(params.leftMargin >= width - img.getWidth())
                         params.leftMargin = (int) (width - img.getWidth());
-                    if(params.topMargin >= height - img.getHeight() - img.getHeight()/4 )
-                        params.topMargin = (int) (height - img.getHeight() - img.getHeight()/4);
+                    if(params.topMargin >= height - img.getHeight())
+                        params.topMargin = (int) (height - img.getHeight());
 
 
                     img.setLayoutParams(params);
