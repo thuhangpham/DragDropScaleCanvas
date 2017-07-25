@@ -194,8 +194,8 @@ public class CanvasView  extends View implements IMyCanvas, View.OnTouchListener
 //                        params.topMargin = (int) (height - img.getHeight());
                     if(params.leftMargin >= width - img.getWidth())
                         params.leftMargin = (int) (width - img.getWidth());
-                    if(params.topMargin >= height - img.getHeight())
-                        params.topMargin = (int) (height - img.getHeight());
+                    if(params.topMargin >= height - img.getHeight() - img.getHeight()/4 )
+                        params.topMargin = (int) (height - img.getHeight() - img.getHeight()/4);
 
 
                     img.setLayoutParams(params);
