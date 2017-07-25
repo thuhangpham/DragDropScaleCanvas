@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
         customCanvas = (CanvasView) findViewById(R.id.signature_canvas);
         scaleGestureDetector = new ScaleGestureDetector(this, new MyScale());
 
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150,150);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(300,300);
         layoutParams.leftMargin = 10;
         layoutParams.topMargin = 10;
         imageView.setLayoutParams(layoutParams);
-        RelativeLayout.LayoutParams layoutParams2 = new RelativeLayout.LayoutParams(150,150);
+        RelativeLayout.LayoutParams layoutParams2 = new RelativeLayout.LayoutParams(300,300);
         layoutParams2.leftMargin = 200;
         layoutParams2.topMargin = 10;
         imageView2.setLayoutParams(layoutParams2);
